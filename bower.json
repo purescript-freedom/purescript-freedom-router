@@ -1,0 +1,35 @@
+{
+  "name": "purescript-freedom-router",
+  "license": "MIT",
+  "homepage": "https://github.com/purescript-freedom/purescript-freedom-router",
+  "authors": [
+    "Shinya Takahashi <s.takahashi313@gmail.com>"
+  ],
+  "description": "Router for purescript-freedom",
+  "keywords": [
+    "purescript",
+    "virtual-dom",
+    "ui",
+    "router"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/purescript-freedom/purescript-freedom-router.git"
+  },
+  "moduleType": [
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "output"
+  ],
+  "dependencies": {
+    "purescript-freedom": "^0.0.1",
+    "purescript-profunctor": "^4.0.0"
+  },
+  "devDependencies": {
+    "purescript-assert": "^4.1.0"
+  }
+}
