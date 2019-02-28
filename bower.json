@@ -5,7 +5,7 @@
   "authors": [
     "Shinya Takahashi <s.takahashi313@gmail.com>"
   ],
-  "description": "Router for purescript-freedom",
+  "description": "Router subscription for purescript-freedom",
   "keywords": [
     "purescript",
     "virtual-dom",
