@@ -21,6 +21,8 @@ data Route
 
 type State = Route
 
+type Sub = Subscription VQueryF State
+
 type Html = VNode VQueryF State
 
 main :: Effect Unit
@@ -32,7 +34,7 @@ main = Freedom.run
   , view
   }
 
-router' :: Subscription VQueryF State
+router' :: Sub
 router' = router \url -> reduce $ const $ route url
   where
     route url = fromMaybe NotFound $ match url $
