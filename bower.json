@@ -26,7 +26,7 @@
     "output"
   ],
   "dependencies": {
-    "purescript-freedom": "^0.0.1",
+    "purescript-freedom": "^0.0.3",
     "purescript-profunctor": "^4.0.0"
   },
   "devDependencies": {
