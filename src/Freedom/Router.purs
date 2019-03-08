@@ -20,7 +20,7 @@ import Freedom.Subscription (Subscription, subscription)
 import Freedom.VNode (VObject)
 import Foreign (Foreign, unsafeToForeign)
 import Web.Event.Event (EventType)
-import Web.Event.EventTarget (EventTarget, addEventListener, eventListener)
+import Web.Event.EventTarget (addEventListener, eventListener)
 import Web.HTML (window)
 import Web.HTML.Event.PopStateEvent.EventTypes (popstate)
 import Web.HTML.History (DocumentTitle(..), URL(..), back, forward, pushState, replaceState)
@@ -40,7 +40,7 @@ router matcher =
           launchAff_ $ transform $ matcher path
     handler
     listener <- eventListener $ const handler
-    eventWindow >>= addEventListener popstate listener false
+    window <#> toEventTarget >>= addEventListener popstate listener false
 
 link
   :: forall f state m
@@ -66,9 +66,6 @@ goForward = window >>= history >>= forward
 
 goBack :: Effect Unit
 goBack = window >>= history >>= back
-
-eventWindow :: Effect EventTarget
-eventWindow = toEventTarget <$> window
 
 null :: Foreign
 null = unsafeToForeign Nothing
