@@ -15,17 +15,17 @@ import Data.Maybe (Maybe(..))
 import Effect (Effect)
 import Effect.Aff (Aff, launchAff_)
 import Effect.Class (class MonadEffect, liftEffect)
+import Foreign (Foreign, unsafeToForeign)
 import Freedom.Markup as H
 import Freedom.Subscription (Subscription, subscription)
 import Freedom.VNode (VObject)
-import Foreign (Foreign, unsafeToForeign)
 import Web.Event.Event (EventType)
 import Web.Event.EventTarget (addEventListener, eventListener)
 import Web.HTML (window)
 import Web.HTML.Event.PopStateEvent.EventTypes (popstate)
 import Web.HTML.History (DocumentTitle(..), URL(..), back, forward, pushState, replaceState)
 import Web.HTML.Location (pathname, search)
-import Web.HTML.Window (Window, toEventTarget, history, location)
+import Web.HTML.Window (Window, history, location, toEventTarget)
 
 router
   :: forall f state

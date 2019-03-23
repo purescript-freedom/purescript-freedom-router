@@ -5,7 +5,7 @@ import Prelude
 import Control.Alt ((<|>))
 import Data.Maybe (fromMaybe)
 import Effect (Effect)
-import Freedom.Router.Parser (match, lit, int, param, end)
+import Freedom.Router.Parser (end, int, lit, match, param)
 import Test.Assert (assert)
 
 data Route

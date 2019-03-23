@@ -4,14 +4,14 @@ import Prelude
 
 import Control.Alt ((<|>))
 import Data.Maybe (fromMaybe)
+import Effect (Effect)
 import Freedom as Freedom
 import Freedom.Markup as H
 import Freedom.Router (link, router)
-import Freedom.Router.Parser (match, lit, int, param, end)
+import Freedom.Router.Parser (end, int, lit, match, param)
 import Freedom.Subscription (Subscription)
-import Freedom.TransformF.Simple (VQueryF, transformF, reduce)
+import Freedom.TransformF.Simple (VQueryF, reduce, transformF)
 import Freedom.VNode (VNode)
-import Effect (Effect)
 
 data Route
   = Home

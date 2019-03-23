@@ -20,13 +20,13 @@ import Control.Plus (class Plus)
 import Data.Array as A
 import Data.Foldable (foldr)
 import Data.Int (fromString)
-import Data.List (catMaybes, List(..), fromFoldable, drop)
+import Data.List (List(..), catMaybes, drop, fromFoldable)
 import Data.Map as M
 import Data.Maybe (Maybe(..), maybe)
 import Data.Profunctor (lcmap)
 import Data.String as S
 import Data.Tuple (Tuple(..), fst, snd)
-import Global (readFloat, isNaN)
+import Global (isNaN, readFloat)
 
 data Part = Path String | Query (M.Map String String)
 
