@@ -6,8 +6,16 @@ Router subscription for [purescript-freedom](https://github.com/purescript-freed
 
 ## Installation
 
+### Bower
+
 ```
-bower install purescript-freedom-router
+$ bower install purescript-freedom-router
+```
+
+### Spago
+
+```
+$ spago install freedom-router
 ```
 
 ## Documentation
