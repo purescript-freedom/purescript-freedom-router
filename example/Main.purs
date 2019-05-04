@@ -48,22 +48,22 @@ view :: State -> Html
 view state =
   case state of
     Home ->
-      H.el $ H.div # H.kids
+      H.keyed "home" $ H.el $ H.div # H.kids
         [ H.el $ H.h1 # H.kids [ H.t "Home" ]
         , H.el $ link "/users/51" # H.kids [ H.t "To user 51" ]
         ]
     User i ->
-      H.el $ H.div # H.kids
+      H.keyed "user" $ H.el $ H.div # H.kids
         [ H.el $ H.h1 # H.kids [ H.t $ "User " <> show i ]
         , H.el $ link "/users?name=ichiro" # H.kids [ H.t "To ichiro" ]
         ]
     Users name ->
-      H.el $ H.div # H.kids
+      H.keyed "users" $ H.el $ H.div # H.kids
         [ H.el $ H.h1 # H.kids [ H.t $ "I am " <> name ]
         , H.el $ link "/not_found" # H.kids [ H.t "Somewhere" ]
         ]
     NotFound ->
-      H.el $ H.div # H.kids
+      H.keyed "notFound" $ H.el $ H.div # H.kids
         [ H.el $ H.h1 # H.kids [ H.t "NotFound" ]
         , H.el $ link "/" # H.kids [ H.t "To Home" ]
         ]
