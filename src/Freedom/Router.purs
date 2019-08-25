@@ -19,7 +19,7 @@ import Foreign (Foreign, unsafeToForeign)
 import Freedom.Markup as H
 import Freedom.Subscription (Subscription, subscription)
 import Freedom.VNode (VObject)
-import Web.Event.Event (EventType)
+import Web.Event.Event (EventType, preventDefault)
 import Web.Event.EventTarget (addEventListener, eventListener)
 import Web.HTML (window)
 import Web.HTML.Event.PopStateEvent.EventTypes (popstate)
@@ -49,7 +49,11 @@ link
   => MonadEffect m
   => String
   -> VObject f state m
-link url = H.a # H.onClick (const $ liftEffect $ navigateTo url)
+link url = H.a # H.href url # H.onClick onClick
+  where
+    onClick evt = liftEffect do
+      preventDefault evt
+      navigateTo url
 
 navigateTo :: String -> Effect Unit
 navigateTo url = do
