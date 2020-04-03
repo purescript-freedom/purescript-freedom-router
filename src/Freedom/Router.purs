@@ -9,16 +9,12 @@ module Freedom.Router
 
 import Prelude
 
-import Control.Monad.Free.Trans (FreeT)
-import Control.Monad.Rec.Class (class MonadRec)
 import Data.Maybe (Maybe(..))
 import Effect (Effect)
-import Effect.Aff (Aff, launchAff_)
-import Effect.Class (class MonadEffect, liftEffect)
 import Foreign (Foreign, unsafeToForeign)
 import Freedom.Markup as H
-import Freedom.Subscription (Subscription, subscription)
-import Freedom.VNode (VObject)
+import Freedom.Store (Query)
+import Freedom.UI (VNode, Subscription)
 import Web.Event.Event (EventType, preventDefault)
 import Web.Event.EventTarget (addEventListener, eventListener)
 import Web.HTML (window)
@@ -28,32 +24,23 @@ import Web.HTML.Location (pathname, search)
 import Web.HTML.Window (Window, history, location, toEventTarget)
 
 router
-  :: forall f state
-   . Functor (f state)
-  => (String -> FreeT (f state) Aff Unit)
-  -> Subscription f state
-router matcher =
-  subscription \transform -> do
-    let handler = do
-          l <- window >>= location
-          path <- (<>) <$> pathname l <*> search l
-          launchAff_ $ transform $ matcher path
-    handler
-    listener <- eventListener $ const handler
-    window <#> toEventTarget >>= addEventListener popstate listener false
+  :: forall state
+   . (String -> Query state -> Effect Unit)
+  -> Subscription state
+router effect query = do
+  effectByPath
+  listener <- eventListener $ const effectByPath
+  window <#> toEventTarget >>= addEventListener popstate listener false
+  where
+    effectByPath = do
+      l <- window >>= location
+      path <- (<>) <$> pathname l <*> search l
+      effect path query
 
-link
-  :: forall f state m
-   . Functor (f state)
-  => MonadRec m
-  => MonadEffect m
-  => String
-  -> VObject f state m
+link :: forall state. String -> VNode state
 link url = H.a # H.href url # H.onClick onClick
   where
-    onClick evt = liftEffect do
-      preventDefault evt
-      navigateTo url
+    onClick evt = const $ preventDefault evt *> navigateTo url
 
 navigateTo :: String -> Effect Unit
 navigateTo url = do
