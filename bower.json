@@ -14,7 +14,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/purescript-freedom/purescript-freedom-router.git"
+    "url": "https://github.com/purescript-freedom/purescript-freedom-router"
   },
   "moduleType": [
     "node"
@@ -26,7 +26,7 @@
     "output"
   ],
   "dependencies": {
-    "purescript-freedom": "^1.0.0",
+    "purescript-freedom": "^2.0.0",
     "purescript-profunctor": "^4.0.0"
   },
   "devDependencies": {
